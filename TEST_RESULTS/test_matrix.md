@@ -35,29 +35,19 @@ No result should be interpreted as physical validation of the Antarikshyaan syst
 
 
 
-\## Validation Coverage
-
-
+## Validation Coverage
 
 The current test harness demonstrates detection of:
 
-
-
-\- Missing values
-
-\- Malformed sensor values
-
-\- Duplicate sequence numbers
-
-\- Sequence-number gaps
-
-\- Out-of-range values
-
-\- Basic numerical statistics
-
-\- Timestamp parsing
-
-\- Observed update interval
-
-\- Observed update frequency
-
+- Missing values
+- Malformed sensor values
+- Duplicate sequence numbers
+- Sequence-number gaps
+- Out-of-range values
+- Basic numerical statistics
+- Timestamp parsing
+- Timestamp discontinuities
+- Observed update interval
+- Observed update frequency
+- Potential stale/delayed intervals
+- Measurement-over-time visualization
