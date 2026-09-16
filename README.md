@@ -56,7 +56,7 @@ The project includes:
 
 
 
-\## Evidence and Data Integrity
+## Evidence and Data Integrity
 
 ## Validation Capabilities
 
@@ -76,11 +76,11 @@ The current test harness can validate:
 - Configured numerical range
 - Measurement-over-time visualization
 
-Raw datasets are preserved in `RAW\_DATA/` and are not overwritten by processing.
+Raw datasets are preserved in `RAW_DATA/` and are not overwritten by processing.
 
 
 
-Processed validation results are stored separately in `PROCESSED\_DATA/`.
+Processed validation results are stored separately in `PROCESSED_DATA/`.
 
 
 
@@ -88,7 +88,7 @@ Test results, observations, and failure records are documented separately to mai
 
 
 
-\## Important Limitation
+## Important Limitation
 
 
 
@@ -114,3 +114,13 @@ From the repository root, the validation harness can be executed using:
 
 ```text
 python .\TEST_HARNESS\validator.py
+
+## Environment and Dependencies
+
+- Python 3.12
+- matplotlib
+
+Install the required Python dependency using:
+
+```text
+python -m pip install matplotlib
