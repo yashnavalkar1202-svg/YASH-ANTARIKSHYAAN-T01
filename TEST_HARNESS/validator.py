@@ -195,33 +195,54 @@ print(f"Allowed range: {MIN_ALLOWED_VALUE}–{MAX_ALLOWED_VALUE}")
 print(f"Out-of-range values: {out_of_range_count}")
 
 
-# Save a validation summary
+# Save or update the validation summary
 PROCESSED_DATA_DIR = PROJECT_ROOT / "PROCESSED_DATA"
 PROCESSED_DATA_DIR.mkdir(exist_ok=True)
 
 RESULT_FILE = PROCESSED_DATA_DIR / "validation_summary.csv"
 
+headers = [
+    "input_file",
+    "total_records",
+    "missing_values",
+    "malformed_values",
+    "duplicate_sequences",
+    "sequence_gaps",
+    "out_of_range_values"
+]
+
+new_row = [
+    RAW_DATA_FILE.name,
+    len(data),
+    missing,
+    malformed,
+    duplicates,
+    sequence_gaps,
+    out_of_range_count
+]
+
+existing_rows = []
+
+if RESULT_FILE.exists():
+    with open(RESULT_FILE, "r", newline="", encoding="utf-8") as file:
+        reader = csv.reader(file)
+        existing_rows = list(reader)
+
+# Keep the header and preserve results from other test files.
+rows_by_file = {}
+
+if existing_rows:
+    for row in existing_rows[1:]:
+        if row:
+            rows_by_file[row[0]] = row
+
+rows_by_file[RAW_DATA_FILE.name] = new_row
+
 with open(RESULT_FILE, "w", newline="", encoding="utf-8") as file:
     writer = csv.writer(file)
+    writer.writerow(headers)
 
-    writer.writerow([
-        "input_file",
-        "total_records",
-        "missing_values",
-        "malformed_values",
-        "duplicate_sequences",
-        "sequence_gaps",
-        "out_of_range_values"
-    ])
-
-    writer.writerow([
-        RAW_DATA_FILE.name,
-        len(data),
-        missing,
-        malformed,
-        duplicates,
-        sequence_gaps,
-        out_of_range_count
-    ])
+    for row in rows_by_file.values():
+        writer.writerow(row)
 
 print(f"\nValidation summary saved to: {RESULT_FILE}")
