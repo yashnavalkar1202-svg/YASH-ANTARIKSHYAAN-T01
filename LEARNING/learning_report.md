@@ -387,7 +387,7 @@ Plotting a measurement against time can help identify changes, discontinuities, 
 
 For a real sensor system, a time-series plot could provide additional evidence when investigating stability or changes in behaviour.
 
-The current validation work focuses primarily on numerical and timing analysis of controlled datasets. A measurement-over-time plot remains an area for further improvement.
+The current validation work focuses primarily on numerical and timing analysis of controlled datasets. The validation harness now generates measurement-over-time plots for datasets with valid timestamped numerical measurements.
 
 ### 11.5 Raw Data and Processed Data
 Raw data represents the observations as received by the test process and should remain unchanged.
