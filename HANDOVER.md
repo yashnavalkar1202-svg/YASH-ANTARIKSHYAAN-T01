@@ -26,6 +26,7 @@ The current test harness validates:
 - Missing values
 - Malformed sensor values
 - Duplicate sequence numbers
+- Sequence-number gaps
 - Timestamp format
 - Numerical statistics
 - Observed update interval
