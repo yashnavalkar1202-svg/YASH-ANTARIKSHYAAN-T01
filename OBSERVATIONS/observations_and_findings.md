@@ -14,7 +14,7 @@ The boundary test included values at 0.0 and 50.0, which were accepted by the co
 
 ## Observation 4 — Data Fault Detection
 
-The fault-injection dataset demonstrated detection of a duplicate sequence number, a missing sensor value, a malformed sensor value, and an out-of-range value.
+The fault-injection dataset demonstrated detection of a duplicate sequence number, a missing sensor value, a malformed sensor value, a sequence-number gap, and an out-of-range value.
 
 ## Observation 5 — Data Gap and Subsequent Valid Data
 
@@ -22,7 +22,7 @@ The recovery dataset contained missing values at sequences 3 and 4, followed by 
 
 ## Interpretation
 
-The test harness is currently capable of performing basic validation of structured sensor-like data, including field presence, numeric formatting, sequence duplication, range checking, timestamps, and basic timing statistics.
+The test harness is currently capable of performing basic validation of structured sensor-like data, including field presence, numeric formatting, sequence duplication, sequence gaps, range checking, timestamps, and basic timing statistics.
 
 ## Hypotheses
 
@@ -35,3 +35,4 @@ The implemented test harness demonstrates basic black-box data validation using 
 The evidence is sufficient to demonstrate the current validation logic, but it is not sufficient to claim physical validation of the Antarikshyaan system.
 
 Actual system validation requires an observable Antarikshyaan interface, device, simulator, or telemetry source.
+
