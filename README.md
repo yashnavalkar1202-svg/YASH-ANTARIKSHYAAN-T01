@@ -38,55 +38,43 @@ The project includes:
 
 
 
-\## Test Families
 
 
 
-\- T01 — Nominal operation
+## Test Families
 
-\- T02 — Repeatability
-
-\- T03 — Boundary/Stress
-
-\- T04 — Communication/Data Fault
-
-\- T05 — Recovery
-
-
-
-\## Validation Capabilities
+- T01 — Nominal operation
+- T02 — Repeatability
+- T03 — Boundary/Stress
+- T04 — Communication/Data Fault
+- T05 — Recovery
+- T06 — Stale/Delayed Data Detection
+- T07 — Timestamp Discontinuity Detection
 
 
 
-The current test harness can validate:
-
-
-
-\- Required fields
-
-\- Missing values
-
-\- Malformed sensor values
-
-\- Duplicate sequence numbers
-
-\- Sequence-number gaps
-
-\- Timestamp format
-
-\- Numerical statistics
-
-\- Observed update interval
-
-\- Observed update frequency
-
-\- Configured numerical range
 
 
 
 \## Evidence and Data Integrity
 
+## Validation Capabilities
 
+The current test harness can validate:
+
+- Required fields
+- Missing values
+- Malformed sensor values
+- Duplicate sequence numbers
+- Sequence-number gaps
+- Timestamp format
+- Timestamp discontinuities
+- Numerical statistics
+- Observed update interval
+- Observed update frequency
+- Potential stale/delayed intervals
+- Configured numerical range
+- Measurement-over-time visualization
 
 Raw datasets are preserved in `RAW\_DATA/` and are not overwritten by processing.
 
@@ -120,15 +108,9 @@ Therefore, the current results demonstrate the validation methodology and implem
 
 
 
-\## Reproducibility
-
-
+## Reproducibility
 
 From the repository root, the validation harness can be executed using:
 
-
-
 ```text
-
-python .\\TEST\_HARNESS\\validator.py <input\_file.csv>
-
+python .\TEST_HARNESS\validator.py
