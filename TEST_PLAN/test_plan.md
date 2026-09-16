@@ -122,6 +122,42 @@ without assuming that recovery occurred.
 
 **Evidence:** Raw log and recovery analysis.
 
+### T06 — Stale or Delayed Data Detection
+
+**Purpose:** Determine whether the test harness can identify observations
+that arrive with an interval exceeding the defined freshness threshold.
+
+**Procedure:**
+
+1. Establish the expected observation interval.
+2. Introduce a controlled delay between observations.
+3. Record the timestamps and sequence numbers.
+4. Run the validation harness.
+5. Compare the observed intervals with the configured threshold.
+
+**Expected:** Intervals exceeding the configured freshness threshold
+are identified as potential stale or delayed data.
+
+**Evidence:** Raw dataset, validation output, and measurement-over-time plot.
+
+### T07 — Timestamp Discontinuity Detection
+
+**Purpose:** Determine whether the test harness can identify
+non-increasing observation timestamps.
+
+**Procedure:**
+
+1. Provide observations with valid timestamps.
+2. Introduce a repeated or non-increasing timestamp.
+3. Record the complete raw dataset.
+4. Run the validation harness.
+5. Check whether the timestamp discontinuity is detected.
+
+**Expected:** Non-increasing timestamp intervals are identified
+and reported as timestamp discontinuities.
+
+**Evidence:** Raw dataset and validation output.
+
 ## 5. Data Validation
 
 The test harness will check for:
