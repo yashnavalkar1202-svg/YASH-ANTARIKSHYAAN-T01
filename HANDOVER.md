@@ -17,6 +17,8 @@ The implemented test workflow covers:
 - T03 — Boundary/Stress
 - T04 — Communication/Data Fault
 - T05 — Recovery
+- T06 — Stale/Delayed Data Detection
+- T07 — Timestamp Discontinuity Detection
 
 ## Validation Capabilities
 
@@ -28,10 +30,13 @@ The current test harness validates:
 - Duplicate sequence numbers
 - Sequence-number gaps
 - Timestamp format
+- Timestamp discontinuities
 - Numerical statistics
 - Observed update interval
 - Observed update frequency
+- Potential stale/delayed intervals
 - Configured numerical range
+- Measurement-over-time visualization
 
 ## Evidence Policy
 
@@ -40,6 +45,8 @@ Raw datasets are preserved in `RAW_DATA/`.
 Processed validation results are stored separately in `PROCESSED_DATA/`.
 
 Test results and interpretations are documented in `TEST_RESULTS/` and `OBSERVATIONS/`.
+
+The test matrix links each test case to its corresponding raw dataset and supporting evidence where applicable.
 
 ## Important Limitation
 
@@ -51,7 +58,7 @@ Physical validation of the Antarikshyaan system requires an observable device, s
 
 ## Reproducibility
 
-The Python test harness can be executed from the repository root using:
+From the repository root, the validation harness can be executed using:
 
 ```text
-python .\TEST_HARNESS\validator.py <input_file.csv>
+python .\TEST_HARNESS\validator.py
