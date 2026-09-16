@@ -11,6 +11,7 @@ Record observed validation failures and distinguish detected data issues from co
 | F003 | T04 | Malformed sensor value | Numeric validation | Detected | Data-format issue |
 | F004 | T03 | Value above defined test range | Range validation | Detected | Boundary violation |
 | F005 | T05 | Missing sensor values | Missing-value validation | Detected | Temporary data gap |
+| F006 | T04 | Sequence-number gap | Sequence validation | Detected | Data-integrity issue |
 
 ## Engineering Note
 
