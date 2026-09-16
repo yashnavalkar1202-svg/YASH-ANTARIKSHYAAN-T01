@@ -27,6 +27,7 @@ Note: This dataset is test-generated and is not Antarikshyaan telemetry.
 - Missing values: 0
 - Malformed values: 0
 - Duplicate sequences: 0
+- Sequence gaps: 0
 - Out-of-range values: 0
 - Minimum value: 25.1
 - Maximum value: 25.4
