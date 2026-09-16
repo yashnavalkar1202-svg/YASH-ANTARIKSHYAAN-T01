@@ -155,6 +155,11 @@ for i in range(1, len(timestamps)):
     difference = (timestamps[i] - timestamps[i - 1]).total_seconds()
     time_differences.append(difference)
 
+    timestamp_discontinuities = [
+    interval for interval in time_differences
+    if interval <= 0
+]
+
 
 print("\nTiming Analysis")
 print("---------------")
@@ -172,6 +177,7 @@ if time_differences:
         ]
 
         print(f"Potential stale/delayed intervals: {len(stale_intervals)}")
+        print(f"Timestamp discontinuities: {len(timestamp_discontinuities)}")
     else:
         print("Average update interval is zero.")
 else:
