@@ -15,6 +15,7 @@
 | T04 | Communication/Data Fault | `fault\_test\_data.csv` | Controlled missing, malformed, duplicate, sequence-gap, and out-of-range conditions should be detected | All 5 injected faults detected | Pass - harness validation | `RAW\_DATA/fault\_test\_data.csv`; `TEST\_RESULTS/T04\_communication\_fault\_test.md` |
 
 | T05 | Recovery | `recovery\_test\_data.csv` | Temporary missing data should be detected and subsequent valid observations should remain processable | Missing values detected at sequences 3 and 4; valid observations resumed at sequences 5-7 | Pass - harness validation | `RAW\_DATA/recovery\_test\_data.csv`; `TEST\_RESULTS/T05\_recovery\_test.md` |
+| T06 | Stale/Delayed Data | `stale_data_test.csv` | Individual update intervals greater than 2 seconds should be detected as potential stale/delayed data | 1 potential stale/delayed interval detected; average interval 2.00 seconds; 0 other integrity faults | Pass - harness validation | `RAW_DATA/stale_data_test.csv`; T06 harness output |
 
 
 

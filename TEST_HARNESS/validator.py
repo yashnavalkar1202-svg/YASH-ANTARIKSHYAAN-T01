@@ -15,6 +15,7 @@ else:
 
 MIN_ALLOWED_VALUE = 0.0
 MAX_ALLOWED_VALUE = 50.0
+MAX_ALLOWED_INTERVAL = 2.0
 
 
 def load_data(file_path):
@@ -157,7 +158,6 @@ for i in range(1, len(timestamps)):
 
 print("\nTiming Analysis")
 print("---------------")
-
 if time_differences:
     average_interval = sum(time_differences) / len(time_differences)
 
@@ -165,11 +165,17 @@ if time_differences:
         update_frequency = 1 / average_interval
         print(f"Average update interval: {average_interval:.2f} seconds")
         print(f"Observed update frequency: {update_frequency:.2f} Hz")
+
+        stale_intervals = [
+            interval for interval in time_differences
+            if interval > MAX_ALLOWED_INTERVAL
+        ]
+
+        print(f"Potential stale/delayed intervals: {len(stale_intervals)}")
     else:
         print("Average update interval is zero.")
 else:
     print("Not enough valid timestamps to calculate update frequency.")
-
 
 # Range validation
 out_of_range_count = 0
