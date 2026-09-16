@@ -49,7 +49,7 @@ def validate_data(data):
             print(f"Malformed timestamp: {record.get('timestamp')}")
             malformed_count += 1
 
-               # Check sensor value
+        # Check sensor value
         if record.get("value") != "":
             try:
                 value = float(record["value"])
@@ -106,7 +106,6 @@ print(f"Duplicate sequences: {duplicates}")
 print(f"Sequence gaps: {sequence_gaps}")
 
 
-# Calculate basic statistics
 # Calculate basic statistics
 values = []
 
