@@ -29,8 +29,10 @@ def validate_data(data):
     missing_count = 0
     malformed_count = 0
     duplicate_count = 0
+    sequence_gap_count = 0
 
     sequences = set()
+    expected_sequence = None
 
     for record in data:
 
@@ -47,15 +49,18 @@ def validate_data(data):
             print(f"Malformed timestamp: {record.get('timestamp')}")
             malformed_count += 1
 
-        # Check sensor value
+               # Check sensor value
         if record.get("value") != "":
             try:
-                float(record["value"])
+                value = float(record["value"])
+
+                # Numeric values are valid format even if outside the allowed range.
+                # Range checking is performed separately below.
+
             except (ValueError, TypeError):
                 print(f"Malformed sensor value: {record.get('value')}")
                 malformed_count += 1
-
-        # Check duplicate sequence numbers
+        # Check sequence numbers for duplicates and gaps
         try:
             sequence = int(record["sequence"])
 
@@ -63,13 +68,24 @@ def validate_data(data):
                 print(f"Duplicate sequence number: {sequence}")
                 duplicate_count += 1
 
+            if expected_sequence is not None and sequence > expected_sequence:
+                gap = sequence - expected_sequence
+
+                if gap > 0:
+                    print(
+                        f"Sequence gap detected: expected {expected_sequence}, "
+                        f"received {sequence}"
+                    )
+                    sequence_gap_count += gap
+
             sequences.add(sequence)
+            expected_sequence = sequence + 1
 
         except (ValueError, TypeError):
             print(f"Malformed sequence number: {record.get('sequence')}")
             malformed_count += 1
 
-    return missing_count, malformed_count, duplicate_count
+    return missing_count, malformed_count, duplicate_count, sequence_gap_count
 
 
 # Load data
@@ -79,7 +95,7 @@ print(f"Loaded {len(data)} records.")
 
 
 # Validate data
-missing, malformed, duplicates = validate_data(data)
+missing, malformed, duplicates, sequence_gaps = validate_data(data)
 
 print("\nValidation Summary")
 print("------------------")
@@ -87,8 +103,10 @@ print(f"Total records: {len(data)}")
 print(f"Missing values: {missing}")
 print(f"Malformed values: {malformed}")
 print(f"Duplicate sequences: {duplicates}")
+print(f"Sequence gaps: {sequence_gaps}")
 
 
+# Calculate basic statistics
 # Calculate basic statistics
 values = []
 
@@ -143,10 +161,13 @@ print("---------------")
 
 if time_differences:
     average_interval = sum(time_differences) / len(time_differences)
-    update_frequency = 1 / average_interval
 
-    print(f"Average update interval: {average_interval:.2f} seconds")
-    print(f"Observed update frequency: {update_frequency:.2f} Hz")
+    if average_interval > 0:
+        update_frequency = 1 / average_interval
+        print(f"Average update interval: {average_interval:.2f} seconds")
+        print(f"Observed update frequency: {update_frequency:.2f} Hz")
+    else:
+        print("Average update interval is zero.")
 else:
     print("Not enough valid timestamps to calculate update frequency.")
 
@@ -172,6 +193,8 @@ print("\nRange Validation")
 print("----------------")
 print(f"Allowed range: {MIN_ALLOWED_VALUE}–{MAX_ALLOWED_VALUE}")
 print(f"Out-of-range values: {out_of_range_count}")
+
+
 # Save a validation summary
 PROCESSED_DATA_DIR = PROJECT_ROOT / "PROCESSED_DATA"
 PROCESSED_DATA_DIR.mkdir(exist_ok=True)
@@ -187,6 +210,7 @@ with open(RESULT_FILE, "w", newline="", encoding="utf-8") as file:
         "missing_values",
         "malformed_values",
         "duplicate_sequences",
+        "sequence_gaps",
         "out_of_range_values"
     ])
 
@@ -196,6 +220,7 @@ with open(RESULT_FILE, "w", newline="", encoding="utf-8") as file:
         missing,
         malformed,
         duplicates,
+        sequence_gaps,
         out_of_range_count
     ])
 

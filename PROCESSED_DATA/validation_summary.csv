@@ -1,2 +1,2 @@
-input_file,total_records,missing_values,malformed_values,duplicate_sequences,out_of_range_values
-recovery_test_data.csv,7,2,0,0,0
+input_file,total_records,missing_values,malformed_values,duplicate_sequences,sequence_gaps,out_of_range_values
+fault_test_data.csv,6,1,1,1,1,1
