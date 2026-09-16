@@ -2,6 +2,7 @@ import csv
 import sys
 from pathlib import Path
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -134,6 +135,36 @@ if values:
     print(f"Minimum value: {minimum}")
     print(f"Maximum value: {maximum}")
     print(f"Mean value: {mean:.2f}")
+    plot_timestamps = []
+    plot_values = []
+
+    for record in data:
+        try:
+            timestamp = datetime.fromisoformat(record["timestamp"])
+            value = float(record["value"])
+
+            if MIN_ALLOWED_VALUE <= value <= MAX_ALLOWED_VALUE:
+                plot_timestamps.append(timestamp)
+                plot_values.append(value)
+        except (ValueError, TypeError):
+            continue
+
+    if plot_timestamps:
+        plt.figure(figsize=(8, 4))
+        plt.plot(plot_timestamps, plot_values, marker="o")
+        plt.xlabel("Time")
+        plt.ylabel("Measurement")
+        plt.title(f"Measurement Over Time - {RAW_DATA_FILE.name}")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+
+        plot_file = PROJECT_ROOT / "PROCESSED_DATA" / (
+            RAW_DATA_FILE.stem + "_measurement_plot.png"
+        )
+        plt.savefig(plot_file)
+        plt.close()
+
+        print(f"Measurement plot saved to: {plot_file}")
 else:
     print("No valid numerical values available.")
 
