@@ -347,3 +347,57 @@ Important evidence includes the test ID, input condition, timestamp, observed ou
 
 Raw data should not be overwritten during processing. Processed datasets and analysis should remain traceable to the original evidence.
 
+## Task 01 — Python Data Validation and Analysis
+
+### 11. Python for Test Instrumentation
+Python can be used as an external test and analysis tool without modifying the system being tested.
+
+For this task, Python is used to read observable data, validate its structure and values, calculate statistics, and produce reproducible validation results.
+
+### 11.1 Reading Data
+A Python test harness can read observations from a CSV file or another observable interface.
+
+The input data should be preserved as raw evidence before any processing is performed.
+
+### 11.2 Data Validation
+The validation process can check whether required fields are present and whether values have the expected format.
+
+For this project, validation includes missing values, malformed numerical values, duplicate sequence numbers, sequence-number gaps, timestamps, and configured measurement limits.
+
+### 11.3 Statistical Analysis
+Basic statistics can help describe the observed dataset.
+
+Useful measurements include:
+- Number of records
+- Number of valid samples
+- Minimum value
+- Maximum value
+- Mean value
+- Missing-value count
+- Duplicate count
+- Sequence-gap count
+- Out-of-range count
+- Average update interval
+- Observed update frequency
+
+Statistics should be calculated from clearly defined observations so that invalid or missing values do not silently distort the results.
+
+### 11.4 Measurement Over Time
+Plotting a measurement against time can help identify changes, discontinuities, missing observations, unusual values, or possible drift.
+
+For a real sensor system, a time-series plot could provide additional evidence when investigating stability or changes in behaviour.
+
+The current validation work focuses primarily on numerical and timing analysis of controlled datasets. A measurement-over-time plot remains an area for further improvement.
+
+### 11.5 Raw Data and Processed Data
+Raw data represents the observations as received by the test process and should remain unchanged.
+
+Processed data contains calculated validation results or derived statistics.
+
+Keeping raw and processed data separate makes the analysis traceable and allows the same raw evidence to be reprocessed later.
+
+### 11.6 Reproducible Validation
+A useful test harness should produce the same validation result when the same input and configuration are used.
+
+The validation script in this project can be executed against each test dataset, allowing the checks and results to be reproduced without changing the original raw data.
+
