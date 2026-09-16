@@ -6,15 +6,15 @@ This task helped me understand how a sensor system can be evaluated from its obs
 
 I learned the importance of:
 
-- Sensor-to-signal-to-measurement flow
-- Analog and digital data
-- Sampling and timestamps
-- Noise, calibration, bias, accuracy, precision, resolution, and drift
-- Sequence numbers and data integrity
-- Missing, duplicate, malformed, and out-of-range data
-- Basic Python-based validation
-- Preserving raw evidence separately from processed results
-- Reproducible testing and documentation
+* Sensor-to-signal-to-measurement flow
+* Analog and digital data
+* Sampling and timestamps
+* Noise, calibration, bias, accuracy, precision, resolution, and drift
+* Sequence numbers and data integrity
+* Missing, duplicate, malformed, and out-of-range data
+* Basic Python-based validation
+* Preserving raw evidence separately from processed results
+* Reproducible testing and documentation
 
 ## Testing Approach
 
@@ -40,11 +40,11 @@ When an actual observable interface is available, the test harness should be ada
 
 Additional validation should include:
 
-- Sequence gaps
-- Stale data detection
-- Timestamp discontinuities
-- Packet loss
-- Communication latency
-- Recovery timing
-- More detailed statistical analysis
-- Automated test reports
+* Stale data detection
+* Timestamp discontinuities
+* Packet loss
+* Communication latency
+* Recovery timing
+* More detailed statistical analysis
+* Automated test reports
+
