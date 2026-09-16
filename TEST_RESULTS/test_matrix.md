@@ -2,11 +2,11 @@
 
 | Test ID | Test Family | Input Dataset | Purpose | Result |
 |---|---|---|---|---|
-| T01 | Nominal | sample_sensor_data.csv | Validate normal sensor data | Passed |
-| T02 | Repeatability | repeatability_test_data.csv | Evaluate consistency of repeated measurements | Passed |
-| T03 | Boundary/Stress | boundary_stress_test_data.csv | Test values at and beyond defined limits | Passed |
-| T04 | Communication/Data Fault | fault_test_data.csv | Detect missing, malformed, duplicate and out-of-range data | Passed |
-| T05 | Recovery | recovery_test_data.csv | Detect temporary missing data and subsequent valid data | Passed |
+| T01 | Nominal | sample_sensor_data.csv | Validate normal sensor data | Executed — synthetic |
+| T02 | Repeatability | repeatability_test_data.csv | Evaluate consistency of repeated measurements | Executed — synthetic |
+| T03 | Boundary/Stress | boundary_stress_test_data.csv | Test values at and beyond defined limits | Executed — synthetic |
+| T04 | Communication/Data Fault | fault_test_data.csv | Detect missing, malformed, duplicate, sequence-gap and out-of-range data | Executed — synthetic |
+| T05 | Recovery | recovery_test_data.csv | Detect temporary missing data and subsequent valid data | Executed — synthetic |
 
 ## Evidence Status
 
@@ -21,6 +21,7 @@ The current test harness demonstrates detection of:
 - Missing values
 - Malformed sensor values
 - Duplicate sequence numbers
+- Sequence-number gaps
 - Out-of-range values
 - Basic numerical statistics
 - Timestamp parsing
