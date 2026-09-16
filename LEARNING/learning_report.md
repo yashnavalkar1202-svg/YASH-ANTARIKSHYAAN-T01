@@ -290,3 +290,60 @@ For testing, I need to understand that the value received by the host may be aff
 
 This is why receiving a numerical value alone does not automatically prove that the underlying measurement is trustworthy.
 
+## Task 01 — Data Integrity and Telemetry
+
+### 10. Timestamps
+A timestamp records when an observation was generated or recorded. Timestamps are important for analysing the order and timing of sensor observations.
+
+For black-box validation, I need to distinguish between the time associated with the observation and the time at which the test harness receives the data. A difference between these times can help identify communication delay or latency.
+
+### 10.1 Sequence Numbers
+A sequence number identifies the order of observations or packets.
+
+Sequence numbers can help detect missing or lost observations. For example, if the received sequence changes from 5 to 7, sequence 6 may be missing.
+
+They can also help identify duplicate observations when the same sequence number appears more than once.
+
+### 10.2 Missing Data
+Missing data occurs when an expected observation or field is absent.
+
+The test harness should detect missing values rather than silently treating them as valid measurements. Missing data can affect statistics and conclusions about system behaviour.
+
+### 10.3 Duplicate Data
+Duplicate data occurs when the same observation or sequence number is received more than once.
+
+Duplicates should be identified and reported because they can make the apparent sample count different from the actual number of unique observations.
+
+### 10.4 Malformed Data
+Malformed data is data that does not follow the expected format.
+
+Examples include a non-numeric sensor value where a numerical measurement is expected, an invalid timestamp, or an invalid sequence number.
+
+The validation harness should detect malformed fields and preserve the original data as evidence.
+
+### 10.5 Stale Data
+Stale data is data that is valid in format but is no longer sufficiently recent.
+
+For example, if a system is expected to produce measurements regularly but continues reporting an old observation, the value may appear valid while not representing the current system state.
+
+Detecting stale data requires a defined freshness or timing requirement.
+
+### 10.6 Communication Disconnection and Packet Loss
+A communication interruption can prevent observations from reaching the host.
+
+Packet loss may appear as missing sequence numbers or gaps in received observations. However, a sequence gap alone does not prove the physical cause of the gap. It could also result from data-generation or logging issues.
+
+Therefore, the cause should be treated as a hypothesis unless additional evidence is available.
+
+### 10.7 Latency
+Latency is the delay between an observation being generated and the corresponding data being received or recorded by the host.
+
+To measure communication latency reliably, the system should provide suitable source and arrival timestamps or another synchronized timing reference.
+
+### 10.8 Logging and Reproducibility
+A validation test should preserve enough information to reproduce and investigate its result.
+
+Important evidence includes the test ID, input condition, timestamp, observed output, validation result, raw data, processed results, and test environment.
+
+Raw data should not be overwritten during processing. Processed datasets and analysis should remain traceable to the original evidence.
+
