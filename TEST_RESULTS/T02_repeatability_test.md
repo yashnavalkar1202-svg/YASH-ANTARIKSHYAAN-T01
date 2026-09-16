@@ -22,6 +22,7 @@ Repeated measurements should remain within a narrow range, with no missing, malf
 - Missing values: 0
 - Malformed values: 0
 - Duplicate sequences: 0
+- Sequence gaps: 0
 - Minimum value: 25.2
 - Maximum value: 25.3
 - Mean value: 25.25
