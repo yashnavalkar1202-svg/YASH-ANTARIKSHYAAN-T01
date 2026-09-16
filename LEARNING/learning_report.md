@@ -401,3 +401,55 @@ A useful test harness should produce the same validation result when the same in
 
 The validation script in this project can be executed against each test dataset, allowing the checks and results to be reproduced without changing the original raw data.
 
+## Task 01 — Evidence and Engineering Reasoning
+
+### 12. Evidence-Based Validation
+A validation result should be based on observable evidence rather than assumptions.
+
+For each test, I should distinguish between:
+- Observation — what was directly observed in the data
+- Measurement — a numerical or countable result
+- Interpretation — what the measurement indicates
+- Hypothesis — a possible explanation that has not yet been proven
+- Conclusion — what can reasonably be stated from the available evidence
+
+### 12.1 Observation vs Inference
+An observation is a directly recorded fact. For example, a sequence number may change from 2 to 4.
+
+The missing sequence 3 is an observed data-integrity condition. Saying that a physical communication packet was definitely lost would be an inference unless additional evidence confirms that cause.
+
+This distinction prevents unsupported conclusions.
+
+### 12.2 Expected Behaviour Before Testing
+Expected behaviour should be defined before running a test whenever possible.
+
+Examples include:
+- Required fields should be present.
+- Numerical measurements should have the expected format.
+- Sequence numbers should follow the expected order.
+- Values should remain within the configured validation range.
+- Measurements should be received at an expected update interval.
+
+Defining expectations first makes the test result more objective and reproducible.
+
+### 12.3 Evidence Preservation
+Evidence should be preserved so that another person can inspect how a conclusion was reached.
+
+Important evidence includes raw input, test conditions, timestamps, observed output, validation results, processed data, and failure records.
+
+Raw evidence should not be changed to make the results appear cleaner.
+
+### 12.4 Telemetry Is Evidence, Not Automatically Truth
+A telemetry value received by a host is an observation produced by a data pipeline.
+
+It may be affected by sensor characteristics, calibration, sampling, communication problems, timestamp issues, processing, or data corruption.
+
+Therefore, receiving a value successfully does not by itself prove that the physical measurement is accurate or that the complete sensing pipeline is functioning correctly.
+
+### 12.5 Engineering Conclusion
+The purpose of black-box validation is not to prove that a system works simply because it produces data.
+
+The purpose is to determine what can be demonstrated from observable evidence, identify deviations from expected behaviour, preserve reproducible evidence, and clearly state what remains unknown.
+
+For this project, the controlled synthetic tests demonstrate that the external validation harness can detect several defined data-integrity and boundary conditions. They do not demonstrate the physical performance or communication reliability of the actual Antarikshyaan system because a real observable interface has not yet been provided.
+
