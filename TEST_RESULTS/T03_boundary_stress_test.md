@@ -24,6 +24,7 @@ Note: This dataset is test-generated and is not Antarikshyaan telemetry.
 - Missing values: 0
 - Malformed values: 0
 - Duplicate sequences: 0
+- Sequence gaps: 0
 - Valid sample count: 5
 - Minimum value: 0.0
 - Maximum valid value: 50.0
