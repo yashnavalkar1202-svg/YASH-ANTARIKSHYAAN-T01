@@ -20,6 +20,14 @@ The fault-injection dataset demonstrated detection of a duplicate sequence numbe
 
 The recovery dataset contained missing values at sequences 3 and 4, followed by valid measurements at sequences 5, 6, and 7.
 
+## Observation 6 — Stale/Delayed Data
+
+The stale-data synthetic dataset contained an observation interval of 4 seconds, exceeding the configured maximum interval of 2 seconds. The harness detected 1 potential stale/delayed interval. The measurement-over-time plot was also generated for the dataset.
+
+## Observation 7 — Timestamp Discontinuity
+
+The timestamp-discontinuity synthetic dataset contained two consecutive observations with the same timestamp. The harness detected 1 timestamp discontinuity.
+
 ## Interpretation
 
 The test harness is currently capable of performing basic validation of structured sensor-like data, including field presence, numeric formatting, sequence duplication, sequence gaps, range checking, timestamps, and basic timing statistics.
