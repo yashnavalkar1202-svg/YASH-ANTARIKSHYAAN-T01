@@ -62,3 +62,13 @@ From the repository root, the validation harness can be executed using:
 
 ```text
 python .\TEST_HARNESS\validator.py
+
+The harness uses the default dataset:
+
+RAW_DATA\sample_sensor_data.csv
+
+A specific dataset can also be selected by providing its filename:
+
+python .\TEST_HARNESS\validator.py <dataset_filename>.csv
+
+The required Python dependency is matplotlib.
