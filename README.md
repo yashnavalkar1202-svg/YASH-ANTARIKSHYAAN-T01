@@ -124,3 +124,12 @@ Install the required Python dependency using:
 
 ```text
 python -m pip install matplotlib
+
+
+So the final lines should look exactly like:
+
+```markdown
+Install the required Python dependency using:
+
+```text
+python -m pip install matplotlib
