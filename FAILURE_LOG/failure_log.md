@@ -26,6 +26,10 @@ Record observed validation failures and distinguish detected data issues from co
 
 | F006 | T04 - Sequence gap | Sequence 3 was expected but sequence 4 was received | Run `fault\_test\_data.csv` through the validation harness | Data integrity | `RAW\_DATA/fault\_test\_data.csv`; T04 validation output | Hypothesis: missing packet, packet loss, or data-generation issue |
 
+| F007 | T06 - Stale/delayed data | An observation interval of 4 seconds exceeded the configured 2-second freshness threshold | Run `stale_data_test.csv` through the validation harness | Timing/data freshness | `RAW_DATA/stale_data_test.csv`; `TEST_RESULTS/T06_stale_delayed_data_test.md`; `PROCESSED_DATA/stale_data_test_measurement_plot.png` | Hypothesis: delayed observation, communication delay, or data-generation timing condition |
+
+| F008 | T07 - Timestamp discontinuity | Two consecutive observations had the same timestamp, producing a non-increasing timestamp interval | Run `timestamp_discontinuity_test.csv` through the validation harness | Data integrity | `RAW_DATA/timestamp_discontinuity_test.csv`; `TEST_RESULTS/T07_timestamp_discontinuity_test.md` | Hypothesis: timestamp-generation, logging, or data-ordering condition |
+
 
 
 \## Engineering Note
