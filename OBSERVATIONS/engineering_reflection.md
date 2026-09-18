@@ -94,6 +94,12 @@ The controlled datasets demonstrated that the test harness can detect:
 
 \- Observed update interval and frequency
 
+\- Potential stale/delayed intervals
+
+\- Timestamp discontinuities
+
+\- Measurement-over-time visualization
+
 
 
 The T04 fault dataset demonstrated detection of five intentionally injected data-integrity conditions.
